@@ -117,6 +117,27 @@ export default function Membership() {
         },
       ],
     },
+    {
+      dojoName: "Karate Self Defense Academy",
+      instructor: "Raj Chatterjee",
+      image: raj_chatterjee,
+      contact: [["Phone", "9734301071"]],
+      brunch: [
+        {
+          mainLocation: "Hooghly",
+          brunchAddress: [
+            "Bengai Netaji Club Ground",
+            "Goghat Debangan Nursery School Ground",
+            "Patulsara Primary School Ground",
+            "Badanganj Swastik Club Ground",
+          ],
+        },
+        {
+          mainLocation: "Paschim Medinipur",
+          brunchAddress: ["Ramjibanpur Babulal High School Ground"],
+        },
+      ],
+    },
   ];
 
   // Filter dojos based on search term
