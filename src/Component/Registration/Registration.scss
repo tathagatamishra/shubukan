@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 
     @media screen and (max-width: 800px) {
         padding-top: 5rem;
@@ -217,11 +218,6 @@
 
             & .react-datepicker-popper {
                 z-index: 10;
-            }
-
-            & .datePicker {
-                width: 100%;
-                display: flex;
             }
 
             & .checkbox-group {
@@ -497,6 +493,67 @@
             & p {
                 font-size: 1.2rem;
             }
+        }
+    }
+
+    // Add these styles to your Registration.scss file
+
+    .custom-toast {
+        position: fixed;
+        left: 50%;
+        top: 7%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        min-width: 300px;
+        max-width: 400px;
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        animation: slideIn 0.3s ease-in-out;
+
+        &.success {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        &.error {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translate(-50%, -200%);
+            opacity: 0;
+        }
+
+        to {
+            top: 7%;
+            transform: translate(-50%, -50%);
         }
     }
 }

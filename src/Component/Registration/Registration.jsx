@@ -1,7 +1,30 @@
 import { useEffect, useState } from "react";
 import "./Registration.scss";
 
+// Custom Toast Component
+const Toast = ({ message, type, onClose }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onClose();
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  return (
+    <div className={`custom-toast ${type}`}>
+      <div className="toast-content">
+        <span>{message}</span>
+        <button onClick={onClose} className="toast-close">
+          ×
+        </button>
+      </div>
+    </div>
+  );
+};
+
 export default function Registration() {
+  const [toast, setToast] = useState({ show: false, message: "", type: "" });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -9,9 +32,17 @@ export default function Registration() {
     state: "",
     dob: "",
     gender: "",
-    karateExperience: "", // Changed to store 'yes' or 'no' string
-    otherMartialArtsExperience: "", // Changed to store 'yes' or 'no' string
+    karateExperience: "",
+    otherMartialArtsExperience: "",
   });
+
+  const showToast = (message, type = "success") => {
+    setToast({ show: true, message, type });
+  };
+
+  const closeToast = () => {
+    setToast({ show: false, message: "", type: "" });
+  };
 
   const handleExperienceChange = (field, value) => {
     setFormData((prev) => ({
@@ -22,30 +53,45 @@ export default function Registration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-
+    
     try {
-      const response = await fetch(
-        "https://shubukan-backend.vercel.app/registration",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+        const response = await fetch(
+            "https://shubukan-backend.vercel.app/registration",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            }
+        );
+        
+        const data = await response.json();
+        
+        if (response.status === 409) {
+            // Duplicate registration
+            showToast("This registration already exists in our system.", "error");
+        } else if (data.success) {
+            showToast("Registration successful! We'll be in touch soon.", "success");
+            // Reset form
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                state: "",
+                dob: "",
+                gender: "",
+                karateExperience: "",
+                otherMartialArtsExperience: "",
+            });
+        } else {
+            showToast(data.message || "Registration failed. Please try again.", "error");
         }
-      );
-      const data = await response.json();
-      if (data.success) {
-        console.log("Registration successful!");
-        // Reset form or show success message
-      }
     } catch (error) {
-      console.error("Error:", error);
+        console.error("Error:", error);
+        showToast("Something went wrong. Please try again later.", "error");
     }
-  };
-
-  const [startDate, setStartDate] = useState(null);
+};
 
   useEffect(() => {
     window.scrollTo({
@@ -55,6 +101,14 @@ export default function Registration() {
 
   return (
     <div className="Registration">
+      {toast.show && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={closeToast}
+        />
+      )}
+
       <section className="Registration-Hero">
         <h1>Registration</h1>
         <p>Registration for Karate and Kobudo classes</p>
