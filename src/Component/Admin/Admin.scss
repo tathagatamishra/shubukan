@@ -1,0 +1,189 @@
+.AdminDashboard {
+    padding-top: 10rem;
+    padding-bottom: 4rem;
+    width: 90%;
+    margin: 0 auto;
+    
+    .admin-header {
+      width: 100%;
+      margin-bottom: 2rem;
+      margin-top: 1rem;
+      
+      h1 {
+        margin: 0 0 1rem;
+        color: #2a2727;
+        font-size: 2.5rem;
+        letter-spacing: 0.2rem;
+        font-family: 'Fredericka the Great', cursive;
+      }
+      
+      p {
+        margin: 0;
+        font-size: 1.2rem;
+        font-family: 'Amarante', cursive;
+      }
+      
+      .underline {
+        margin-top: 1rem;
+        height: 2px;
+        width: 100%;
+        background: linear-gradient(90deg, #905043 0%, transparent 60%);
+        opacity: .3;
+      }
+    }
+    
+    .search-section {
+      margin-bottom: 2rem;
+      
+      .search-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        max-width: 600px;
+        
+        .search-icon {
+          color: #666;
+        }
+        
+        input {
+          flex: 1;
+          padding: 0.5rem 1rem;
+          border: 2px solid #ccb5a7;
+          border-radius: 25px;
+          font-size: 1rem;
+          
+          &:focus {
+            outline: none;
+            border-color: #905043;
+          }
+        }
+        
+        select {
+          padding: 0.5rem 1rem;
+          border: 2px solid #ccb5a7;
+          border-radius: 25px;
+          background-color: white;
+          font-size: 1rem;
+          
+          &:focus {
+            outline: none;
+            border-color: #905043;
+          }
+        }
+      }
+    }
+    
+    .registrations-table {
+      overflow-x: auto;
+      
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        
+        th, td {
+          padding: 1rem;
+          text-align: left;
+          border-bottom: 1px solid #eee;
+          
+          &:first-child {
+            width: 50px;
+          }
+        }
+        
+        th {
+          background-color: #f8f8f8;
+          font-weight: 600;
+          cursor: pointer;
+          user-select: none;
+          
+          &:hover {
+            background-color: #f0f0f0;
+          }
+          
+          svg {
+            vertical-align: middle;
+            width: 16px;
+            height: 16px;
+          }
+        }
+        
+        .icon-button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0.25rem;
+          color: #666;
+          
+          &:hover {
+            color: #905043;
+          }
+          
+          &.delete:hover {
+            color: #dc3545;
+          }
+          
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+          
+          .star-filled {
+            color: #ffd700;
+          }
+        }
+      }
+    }
+    
+    @media screen and (max-width: 1024px) {
+      width: 95%;
+      
+      .registrations-table {
+        th, td {
+          padding: 0.75rem 0.5rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+    
+    @media screen and (max-width: 768px) {
+      padding-top: 5rem;
+      
+      .admin-header {
+        h1 {
+          font-size: 2rem;
+        }
+        
+        p {
+          font-size: 1rem;
+        }
+      }
+      
+      .search-section {
+        .search-container {
+          flex-direction: column;
+          align-items: stretch;
+          
+          input, select {
+            width: 100%;
+          }
+        }
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .admin-header {
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+      
+      .registrations-table {
+        th, td {
+          padding: 0.5rem 0.25rem;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
