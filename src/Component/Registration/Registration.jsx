@@ -53,45 +53,51 @@ export default function Registration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-        const response = await fetch(
-            "https://shubukan-backend.vercel.app/registration",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            }
-        );
-        
-        const data = await response.json();
-        
-        if (response.status === 409) {
-            // Exact duplicate registration
-            showToast(data.message || "This exact registration already exists. Please modify at least one field.", "error");
-        } else if (data.success) {
-            showToast("Registration successful! We'll be in touch soon.", "success");
-            // Reset form
-            setFormData({
-                name: "",
-                email: "",
-                phone: "",
-                state: "",
-                dob: "",
-                gender: "",
-                karateExperience: "",
-                otherMartialArtsExperience: "",
-            });
-        } else {
-            showToast(data.message || "Registration failed. Please try again.", "error");
+      const response = await fetch(
+        "https://shubukan-backend.vercel.app/registration",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         }
+      );
+
+      const data = await response.json();
+
+      if (response.status === 409) {
+        // Duplicate registration
+        showToast("This registration already exists in our system.", "error");
+      } else if (data.success) {
+        showToast(
+          "Registration successful! We'll be in touch soon.",
+          "success"
+        );
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          state: "",
+          dob: "",
+          gender: "",
+          karateExperience: "",
+          otherMartialArtsExperience: "",
+        });
+      } else {
+        showToast(
+          data.message || "Registration failed. Please try again.",
+          "error"
+        );
+      }
     } catch (error) {
-        console.error("Error:", error);
-        showToast("Something went wrong. Please try again later.", "error");
+      console.error("Error:", error);
+      showToast("Something went wrong. Please try again later.", "error");
     }
-};
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -102,11 +108,7 @@ export default function Registration() {
   return (
     <div className="Registration">
       {toast.show && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={closeToast}
-        />
+        <Toast message={toast.message} type={toast.type} onClose={closeToast} />
       )}
 
       <section className="Registration-Hero">
