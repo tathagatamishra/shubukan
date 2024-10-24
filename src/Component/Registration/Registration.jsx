@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import "./Registration.scss";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 export default function Registration() {
   const [formData, setFormData] = useState({
@@ -141,60 +139,6 @@ export default function Registration() {
               }
               required
             />
-
-            {/* <DatePicker
-              size="100%"
-              className="datePicker"
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              dateFormat="d/MM/YYYY"
-              placeholderText="dd-mm-yyyy"
-              isClearable
-              // allowSameDay=boolean
-              // dateFormatCalendar=string
-              // disabled=boolean
-              // disabledKeyboardNavigation=boolean
-              // dropdownMode="scroll"
-              // preventOpenOnFocus=boolean
-              // monthsShown=number
-              // readOnly=boolean
-              // withPortal=boolean
-              // selectsDisabledDaysInRange=boolean
-              // shouldCloseOnSelect=boolean
-              // showTimeSelect=boolean
-              // showTimeInput=boolean
-              // showPreviousMonths=boolean
-              // showMonthYearPicker=boolean
-              // showFullMonthYearPicker=boolean
-              // showTwoColumnMonthYearPicker=boolean
-              // showFourColumnMonthYearPicker=boolean
-              // showYearPicker=boolean
-              // showQuarterYearPicker=boolean
-              // showWeekPicker=boolean
-              // strictParsing=boolean
-              // swapRange=boolean
-              // timeIntervals=number
-              // timeCaption=string
-              // previousMonthAriaLabel=string
-              // previousMonthButtonLabel=string
-              // nextMonthAriaLabel=string
-              // nextMonthButtonLabel=string
-              // previousYearAriaLabel=string
-              // previousYearButtonLabel=string
-              // nextYearAriaLabel=string
-              // nextYearButtonLabel=string
-              // timeInputLabel=string
-              // enableTabLoop=boolean
-              // yearItemNumber=number
-              // focusSelectedMonth=boolean
-              // showPopperArrow=boolean
-              // excludeScrollbar=boolean
-              // customTimeInput=null
-              // calendarStartDay=undefined
-              // toggleCalendarOnIconClick=boolean
-              // usePointerEvent=boolean
-              required
-            /> */}
           </div>
 
           <div className="inputBox">
