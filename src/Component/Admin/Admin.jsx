@@ -92,7 +92,7 @@ export default function Admin() {
         <div className="underline"></div>
       </section>
 
-      <section className="search-section">
+      {/* <section className="search-section">
         <div className="search-container">
           <Search className="search-icon" />
           <input
@@ -111,7 +111,7 @@ export default function Admin() {
             <option value="state">State</option>
           </select>
         </div>
-      </section>
+      </section> */}
 
       <section className="registrations-table">
         <table>
