@@ -25,7 +25,7 @@ export default function Registration() {
     console.log(formData);
     
     try {
-      const response = await fetch('http://localhost:1234/registration', {
+      const response = await fetch('https://shubukan-backend.vercel.app/registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
