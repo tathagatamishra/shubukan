@@ -143,19 +143,21 @@ export default function Registration() {
 
           <div className="inputBox">
             <label htmlFor="gender">Gender</label>
-            <select
-              name="gender"
-              id="gender"
-              value={formData.gender}
-              onChange={(e) =>
-                setFormData({ ...formData, gender: e.target.value })
-              }
-              required
-            >
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
+            <div className="selectBox">
+              <select
+                name="gender"
+                id="gender"
+                value={formData.gender}
+                onChange={(e) =>
+                  setFormData({ ...formData, gender: e.target.value })
+                }
+                required
+              >
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
           </div>
 
           <div className="underline"></div>
