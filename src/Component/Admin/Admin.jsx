@@ -16,7 +16,7 @@ export default function Admin() {
 
   const fetchRegistrations = async () => {
     try {
-      const response = await axios.get('http://localhost:1234/registration');
+      const response = await axios.get('https://shubukan-backend.vercel.app/registration');
       // Filter out deleted registrations and sort favorites to top
       const activeRegistrations = response.data.data
         .filter(reg => !reg.isDeleted)
@@ -33,7 +33,7 @@ export default function Admin() {
   const toggleFavorite = async (id) => {
     try {
       const registration = registrations.find(r => r._id === id);
-      await axios.put(`http://localhost:1234/registration/${id}`, {
+      await axios.put(`https://shubukan-backend.vercel.app/registration/${id}`, {
         ...registration,
         isFavorite: !registration.isFavorite
       });
@@ -45,7 +45,7 @@ export default function Admin() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.put(`http://localhost:1234/registration/${id}`, {
+      await axios.put(`https://shubukan-backend.vercel.app/registration/${id}`, {
         isDeleted: true
       });
       fetchRegistrations();
