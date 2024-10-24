@@ -22,8 +22,10 @@ export default function Registration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
+    
     try {
-      const response = await fetch('http://localhost:5000/api/registrations', {
+      const response = await fetch('http://localhost:1234/registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

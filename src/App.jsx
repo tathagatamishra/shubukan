@@ -27,6 +27,7 @@ import Download from "./Component/Download/Download";
 import ReactGA from 'react-ga';
 import Banner from "./Component/UIComponent/Banner";
 import Registration from "./Component/Registration/Registration";
+import Admin from "./Component/Admin/Admin";
 
 function App() {
 
@@ -71,6 +72,7 @@ function App() {
               <Route path="/contact"     element={<Contact />} />
               <Route path="/history"     element={<History setShowNav={setShowNav} />} />
               <Route path="/notice"      element={<CalenderAndNotice />} />
+              <Route path="/admin"       element={<Admin />} />
               <Route path="/blog"        element={<Blog />} />
               <Route path="/registration"        element={<Registration />} />
               <Route path="/"            element={<Home setShowNav={setShowNav} />} />
