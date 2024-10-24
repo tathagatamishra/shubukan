@@ -69,8 +69,8 @@ export default function Registration() {
         const data = await response.json();
         
         if (response.status === 409) {
-            // Duplicate registration
-            showToast("This registration already exists in our system.", "error");
+            // Exact duplicate registration
+            showToast(data.message || "This exact registration already exists. Please modify at least one field.", "error");
         } else if (data.success) {
             showToast("Registration successful! We'll be in touch soon.", "success");
             // Reset form
