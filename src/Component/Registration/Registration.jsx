@@ -1,46 +1,53 @@
 import { useEffect, useState } from "react";
 import "./Registration.scss";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Registration() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    state: '',
-    dob: '',
-    gender: '',
-    karateExperience: '',      // Changed to store 'yes' or 'no' string
-    otherMartialArtsExperience: '' // Changed to store 'yes' or 'no' string
+    name: "",
+    email: "",
+    phone: "",
+    state: "",
+    dob: "",
+    gender: "",
+    karateExperience: "", // Changed to store 'yes' or 'no' string
+    otherMartialArtsExperience: "", // Changed to store 'yes' or 'no' string
   });
 
   const handleExperienceChange = (field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    
+
     try {
-      const response = await fetch('https://shubukan-backend.vercel.app/registration', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
+      const response = await fetch(
+        "https://shubukan-backend.vercel.app/registration",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       const data = await response.json();
       if (data.success) {
-        console.log('Registration successful!');
+        console.log("Registration successful!");
         // Reset form or show success message
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
+
+  const [startDate, setStartDate] = useState(null);
 
   useEffect(() => {
     window.scrollTo({
@@ -67,7 +74,9 @@ export default function Registration() {
               id="name"
               placeholder="Enter your full name"
               value={formData.name}
-              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
               required
             />
           </div>
@@ -80,7 +89,9 @@ export default function Registration() {
               id="email"
               placeholder="Enter your email"
               value={formData.email}
-              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
               required
             />
           </div>
@@ -93,7 +104,9 @@ export default function Registration() {
               id="phone"
               placeholder="Enter your mobile number"
               value={formData.phone}
-              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, phone: e.target.value })
+              }
               required
             />
           </div>
@@ -106,30 +119,93 @@ export default function Registration() {
               id="state"
               placeholder="State"
               value={formData.state}
-              onChange={(e) => setFormData({...formData, state: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, state: e.target.value })
+              }
               required
             />
           </div>
 
+          <div className="underline"></div>
+
           <div className="inputBox">
             <label htmlFor="dob">Date of Birth</label>
-            <input 
-              type="date" 
-              name="dob" 
-              id="dob" 
+            <input
+              type="date"
+              name="dob"
+              id="dob"
+              placeholder="dd-mm-yyyy"
               value={formData.dob}
-              onChange={(e) => setFormData({...formData, dob: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, dob: e.target.value })
+              }
               required
             />
+
+            {/* <DatePicker
+              size="100%"
+              className="datePicker"
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              dateFormat="d/MM/YYYY"
+              placeholderText="dd-mm-yyyy"
+              isClearable
+              // allowSameDay=boolean
+              // dateFormatCalendar=string
+              // disabled=boolean
+              // disabledKeyboardNavigation=boolean
+              // dropdownMode="scroll"
+              // preventOpenOnFocus=boolean
+              // monthsShown=number
+              // readOnly=boolean
+              // withPortal=boolean
+              // selectsDisabledDaysInRange=boolean
+              // shouldCloseOnSelect=boolean
+              // showTimeSelect=boolean
+              // showTimeInput=boolean
+              // showPreviousMonths=boolean
+              // showMonthYearPicker=boolean
+              // showFullMonthYearPicker=boolean
+              // showTwoColumnMonthYearPicker=boolean
+              // showFourColumnMonthYearPicker=boolean
+              // showYearPicker=boolean
+              // showQuarterYearPicker=boolean
+              // showWeekPicker=boolean
+              // strictParsing=boolean
+              // swapRange=boolean
+              // timeIntervals=number
+              // timeCaption=string
+              // previousMonthAriaLabel=string
+              // previousMonthButtonLabel=string
+              // nextMonthAriaLabel=string
+              // nextMonthButtonLabel=string
+              // previousYearAriaLabel=string
+              // previousYearButtonLabel=string
+              // nextYearAriaLabel=string
+              // nextYearButtonLabel=string
+              // timeInputLabel=string
+              // enableTabLoop=boolean
+              // yearItemNumber=number
+              // focusSelectedMonth=boolean
+              // showPopperArrow=boolean
+              // excludeScrollbar=boolean
+              // customTimeInput=null
+              // calendarStartDay=undefined
+              // toggleCalendarOnIconClick=boolean
+              // usePointerEvent=boolean
+              required
+            /> */}
           </div>
 
           <div className="inputBox">
             <label htmlFor="gender">Gender</label>
-            <select 
-              name="gender" 
-              id="gender" 
+            <select
+              name="gender"
+              id="gender"
               value={formData.gender}
-              onChange={(e) => setFormData({...formData, gender: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, gender: e.target.value })
+              }
               required
             >
               <option value="">Select Gender</option>
@@ -138,6 +214,8 @@ export default function Registration() {
             </select>
           </div>
 
+          <div className="underline"></div>
+
           <div className="inputBox checkbox-group">
             <label>Do you have previous experience in Karate?</label>
             <div className="checkbox-options">
@@ -145,8 +223,10 @@ export default function Registration() {
                 <input
                   type="checkbox"
                   id="karateExperienceYes"
-                  checked={formData.karateExperience === 'yes'}
-                  onChange={() => handleExperienceChange('karateExperience', 'yes')}
+                  checked={formData.karateExperience === "yes"}
+                  onChange={() =>
+                    handleExperienceChange("karateExperience", "yes")
+                  }
                 />
                 <label htmlFor="karateExperienceYes">Yes</label>
               </div>
@@ -154,8 +234,10 @@ export default function Registration() {
                 <input
                   type="checkbox"
                   id="karateExperienceNo"
-                  checked={formData.karateExperience === 'no'}
-                  onChange={() => handleExperienceChange('karateExperience', 'no')}
+                  checked={formData.karateExperience === "no"}
+                  onChange={() =>
+                    handleExperienceChange("karateExperience", "no")
+                  }
                 />
                 <label htmlFor="karateExperienceNo">No</label>
               </div>
@@ -163,14 +245,18 @@ export default function Registration() {
           </div>
 
           <div className="inputBox checkbox-group">
-            <label>Do you have previous experience in other Martial Arts?</label>
+            <label>
+              Do you have previous experience in other Martial Arts?
+            </label>
             <div className="checkbox-options">
               <div className="checkbox-item">
                 <input
                   type="checkbox"
                   id="otherExperienceYes"
-                  checked={formData.otherMartialArtsExperience === 'yes'}
-                  onChange={() => handleExperienceChange('otherMartialArtsExperience', 'yes')}
+                  checked={formData.otherMartialArtsExperience === "yes"}
+                  onChange={() =>
+                    handleExperienceChange("otherMartialArtsExperience", "yes")
+                  }
                 />
                 <label htmlFor="otherExperienceYes">Yes</label>
               </div>
@@ -178,8 +264,10 @@ export default function Registration() {
                 <input
                   type="checkbox"
                   id="otherExperienceNo"
-                  checked={formData.otherMartialArtsExperience === 'no'}
-                  onChange={() => handleExperienceChange('otherMartialArtsExperience', 'no')}
+                  checked={formData.otherMartialArtsExperience === "no"}
+                  onChange={() =>
+                    handleExperienceChange("otherMartialArtsExperience", "no")
+                  }
                 />
                 <label htmlFor="otherExperienceNo">No</label>
               </div>
