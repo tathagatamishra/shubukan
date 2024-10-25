@@ -1,27 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Registration.scss";
-
-// Custom Toast Component
-const Toast = ({ message, type, onClose }) => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      onClose();
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [onClose]);
-
-  return (
-    <div className={`custom-toast ${type}`}>
-      <div className="toast-content">
-        <span>{message}</span>
-        <button onClick={onClose} className="toast-close">
-          ×
-        </button>
-      </div>
-    </div>
-  );
-};
+import Toast from "../UIComponent/Toast";
 
 export default function Registration() {
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
@@ -89,7 +68,7 @@ export default function Registration() {
         });
       } else {
         showToast(
-          data.message || "Registration failed. Please try again.",
+          data.message || "Fill all the required fields and try again.",
           "error"
         );
       }
