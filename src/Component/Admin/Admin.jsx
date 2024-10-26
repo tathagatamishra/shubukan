@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import axios from "axios";
 import "./Admin.scss";
+import { shubukan_api } from "../../config";
 
 const CREDENTIALS = {
   username: "admin",
@@ -82,7 +83,7 @@ export default function Admin({ setShowNav, setShowFoot }) {
   const fetchRegistrations = async () => {
     try {
       const response = await axios.get(
-        "https://shubukan-backend.vercel.app/registration"
+        `${shubukan_api}/registration`
       );
       // Filter out deleted registrations and sort favorites to top
       const activeRegistrations = response.data.data
@@ -101,7 +102,7 @@ export default function Admin({ setShowNav, setShowFoot }) {
     try {
       const registration = registrations.find((r) => r._id === id);
       await axios.put(
-        `https://shubukan-backend.vercel.app/registration/${id}`,
+        `${shubukan_api}/registration/${id}`,
         {
           ...registration,
           isFavorite: !registration.isFavorite,
@@ -116,7 +117,7 @@ export default function Admin({ setShowNav, setShowFoot }) {
   const handleDelete = async (id) => {
     try {
       await axios.put(
-        `https://shubukan-backend.vercel.app/registration/${id}`,
+        `${shubukan_api}/registration/${id}`,
         {
           isDeleted: true,
         }
@@ -277,7 +278,7 @@ export default function Admin({ setShowNav, setShowFoot }) {
                   </button>
                 </td>
                 <td className="name">{registration.name}</td>
-                <td className="email">{registration.email}</td>
+                <td className="email">{registration.xmail}</td>
                 <td className="phone">{registration.phone}</td>
                 <td className="state">{registration.state}</td>
                 <td className="age">{registration.age}</td>

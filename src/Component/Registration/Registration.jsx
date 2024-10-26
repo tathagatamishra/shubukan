@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import "./Registration.scss";
 import Toast from "../UIComponent/Toast";
+import { shubukan_api } from "../../config.js";
 
 export default function Registration() {
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    xmail: "",
     phone: "",
     state: "",
     dob: "",
@@ -35,7 +36,7 @@ export default function Registration() {
 
     try {
       const response = await fetch(
-        "https://shubukan-backend.vercel.app/registration",
+        `${shubukan_api}/registration`,
         {
           method: "POST",
           headers: {
@@ -58,7 +59,7 @@ export default function Registration() {
         // Reset form
         setFormData({
           name: "",
-          email: "",
+          xmail: "",
           phone: "",
           state: "",
           dob: "",
@@ -67,13 +68,12 @@ export default function Registration() {
           otherMartialArtsExperience: "",
         });
       } else {
-        showToast(data.message);
+        showToast(data.message || "Fill all the required fields and try again.", "error");
         // || "Fill all the required fields and try again.",
-          "error"
       }
     } catch (error) {
       console.error("Error:", error);
-      showToast(error, "error");
+      showToast("Something went wrong. Please try again later.", "error");
       // "Something went wrong. Please try again later."
     }
   };
@@ -121,9 +121,9 @@ export default function Registration() {
               name="email"
               id="email"
               placeholder="Enter your email"
-              value={formData.email}
+              value={formData.xmail}
               onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
+                setFormData({ ...formData, xmail: e.target.value })
               }
               required
             />
