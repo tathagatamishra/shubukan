@@ -52,7 +52,7 @@ export default function Registration() {
         showToast("This registration already exists in our system.", "error");
       } else if (data.success) {
         showToast(
-          "Registration successful! We'll be in touch soon.",
+          "Registration successful! A confirmation email has been sent to you.",
           "success"
         );
         // Reset form
