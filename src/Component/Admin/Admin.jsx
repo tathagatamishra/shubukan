@@ -250,6 +250,7 @@ export default function Admin({ setShowNav, setShowFoot }) {
                 {sortField === "age" &&
                   (sortDirection === "asc" ? <ChevronUp /> : <ChevronDown />)}
               </th>
+              <th className="dob">DOB</th>
               <th className="gender" onClick={() => handleSort("gender")}>
                 Gender{" "}
                 {sortField === "gender" &&
@@ -280,6 +281,7 @@ export default function Admin({ setShowNav, setShowFoot }) {
                 <td className="phone">{registration.phone}</td>
                 <td className="state">{registration.state}</td>
                 <td className="age">{registration.age}</td>
+                <td className="dob">{registration.dob.split("T")[0]}</td>
                 <td className="gender">{registration.gender}</td>
                 <td className="karate">{registration.karateExperience}</td>
                 <td className="other">

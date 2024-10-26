@@ -93,7 +93,7 @@ function App() {
 
           {showFoot && <Footer />}
 
-          {/* <Banner /> */}
+          <Banner />
         </BrowserRouter>
       </div>
   );
