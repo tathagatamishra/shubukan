@@ -1,7 +1,7 @@
 @import './assets/variables';
 
 .App {
-  height: 100vh;
+  min-height: 100vh;
   box-sizing: border-box;
   // position: relative;
 
@@ -10,10 +10,10 @@
 
   & .webBody {
     height: fit-content;
-
+    min-height: calc(100vh - 610px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 
     // border: 1px red solid;
