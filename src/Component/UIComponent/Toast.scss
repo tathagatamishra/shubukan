@@ -5,21 +5,33 @@
     transform: translate(-50%, -50%);
     z-index: 1000;
     min-width: 300px;
-    max-width: 400px;
+    max-width: 720px;
     width: 90vw;
     padding: 16px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     animation: slideIn 0.3s ease-in-out;
 
+    font-size: 22px;
+    font-family: 'Finlandica';
+    // font-family: 'Shippori Antique';
+    // font-family: 'Andika', sans-serif;
+    // font-family: 'Bellefair', serif;
+    // font-family: 'Capriola', sans-serif;
+    // font-family: 'GFS Neohellenic', sans-serif;
+
+    @media screen and (max-width: 700px) {
+        font-size: 15px;
+    }
+
     &.success {
-        background-color: #4caf50;
+        background-color: #18543e;
         color: white;
     }
 
     &.error {
-        background-color: #f44336;
-        color: white;
+        background-color: #821736;
+        color: #fbf7e2;
     }
 
     .toast-content {

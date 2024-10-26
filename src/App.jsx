@@ -40,6 +40,7 @@ function App() {
   
 
   const [showNav, setShowNav] = useState(true);
+  const [showFoot, setShowFoot] = useState(true);
 
   document.addEventListener("mousemove", (ev) => {
     const x = ev.clientX,
@@ -72,23 +73,25 @@ function App() {
               <Route path="/contact"     element={<Contact />} />
               <Route path="/history"     element={<History setShowNav={setShowNav} />} />
               <Route path="/notice"      element={<CalenderAndNotice />} />
-              <Route path="/admin"       element={<Admin />} />
+              <Route path="/admin"       element={<Admin setShowNav={setShowNav} setShowFoot={setShowFoot} />} />
               <Route path="/blog"        element={<Blog />} />
-              <Route path="/registration"        element={<Registration />} />
               <Route path="/"            element={<Home setShowNav={setShowNav} />} />
+
               <Route path="/shuri-karate-kobudo-hozonkai" element={<Hozonkai />} />
+              
               <Route path="/lineage-and-dojokun" element={<LineageAndDojoKun />} />
               <Route path="/term-and-condition" element={<TAndC />} />
               <Route path="/karate-and-kobudo"  element={<KarateAndKobudo />} />
               <Route path="/shubukan-okinawa"   element={<ShubukanOkinawa />} />
               <Route path="/shubukan-india"     element={<ShubukanIndia />} />
               <Route path="/help-and-faqs"      element={<HAndF />} />
+              <Route path="/registration"       element={<Registration />} />
               <Route path="/contributor"        element={<Contributor />} />
               <Route path="/shubukan-world"     element={<ShubukanWorld setShowNav={setShowNav} />} />
             </Routes>
           </div>
 
-          <Footer />
+          {showFoot && <Footer />}
 
           {/* <Banner /> */}
         </BrowserRouter>
