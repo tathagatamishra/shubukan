@@ -67,14 +67,14 @@ export default function Registration() {
           otherMartialArtsExperience: "",
         });
       } else {
-        showToast(
-          data.message || "Fill all the required fields and try again.",
+        showToast(data.message);
+        // || "Fill all the required fields and try again.",
           "error"
-        );
       }
     } catch (error) {
       console.error("Error:", error);
-      showToast("Something went wrong. Please try again later.", "error");
+      showToast(error, "error");
+      // "Something went wrong. Please try again later."
     }
   };
 
